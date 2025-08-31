@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WR Construções</title>
+  <style>
+    /* ======= REGRAS GERAIS ======= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      overflow-x: hidden; /* Evita scroll lateral */
+    }
+
+    /* ======= CABEÇALHO ======= */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2vh 5vw; 
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    header img {
+      height: 8vh; 
+      max-height: 60px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #000;
+      font-weight: bold;
+    }
+
+    nav ul li a:hover {
+      color: #0077b6;
+    }
+
+    /* ======= BANNER ======= */
+    .banner {
+      position: relative;
+      background-color: gray;
+      /* Exemplo com imagem de fundo:
+      background: url(./imagem/capa.avif) no-repeat center center/cover; */
+      height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      color: #fff;
+    }
+
+    .conteudo-banner {
+      background: rgba(0, 47, 108, 0.8);
+      padding: 4vw;
+      width: 50vw; 
+      height: auto; 
+      margin-left: 5vw;
+      border-radius: 8px;
+    }
+
+    .conteudo-banner h1 {
+      font-size: 2.2vw; 
+      margin-bottom: 10px;
+    }
+
+    .conteudo-banner p {
+      font-size: 1.5vw; 
+      margin-bottom: 20px;
+    }
+
+    .botao {
+      display: inline-block;
+      background: #f8e47a;
+      color: #000;
+      font-weight: bold; 
+      width: 50%; 
+      min-width: 200px;
+      font-size: 1.5vw;
+      padding: 3vh 2vw;
+      margin-top: 8vh;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .botao:hover {
+      background: #ffc107;
+    }
+
+    /* ======= SEÇÃO SOBRE NÓS ======= */
+    .sobre {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6vw;
+      max-width: 90vw;
+      margin: 8vh auto;
+      padding: 0 20px;
+    }
+
+    .sobre .texto {
+      flex: 2;
+      margin-top: 40px;
+    }
+
+    .sobre h2 {
+      background-color: #6b7bbf;
+      color: white;
+      font-size: 1.5vw;
+      width: fit-content;
+      padding: 0.5vw 1vw;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .sobre p {
+      font-size: 1.2vw;
+      line-height: 1.6;
+      color: #333;
+      text-align: justify;
+    }
+
+    .sobre .imagem {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .sobre .imagem img {
+      width: 100%;
+      max-width: 500px;
+      height: 700px;
+      border-radius: 6px;
+      object-fit: cover;
+      background-color: gray;
+    }
+
+    /* ======= SEÇÃO VISÃO E MISSÃO ======= */
+.visao-missao {
+  background: #6b7bbf; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30vw;
+  padding: 10vh 5vw;
+  color: white;
+}
+
+.visao-missao .bloco {
+  text-align: center;
+}
+
+.visao-missao h3 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.visao-missao .logo {
+  width: 120px;
+  height: 120px;
+  background: gray; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 20px auto;
+  font-weight: bold;
+  font-size: 12px;
+  color: black;
+}
+
+.visao-missao p {
+  font-size: 16px;
+  color: white;
+}
+
+
+    /* ======= SEÇÃO VALORES ======= */
+    .valores {
+      background: gray;
+      text-align: center;
+      padding: 8vh 5vw;
+      height: auto; 
+      color: #f8e47a;
+    }
+
+    .valores h2 {
+      font-size: 2vw;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3vh 6vw;
+      justify-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .valor {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-weight: bold;
+      font-size: 1.5vw;
+      color: #f8e47a;
+    }
+
+    .quadrado {
+      width: 55px;
+      height: 55px;
+      background: black;
+      border: 2px solid #f8e47a;
+      border-radius: 6px;
+    }
+
+    /* ======= SEÇÃO PORTFÓLIO (CARROSSEL) ======= */
+    .carrossel {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 0 50px 0;
+    }
+
+    .pista-carrossel {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .item-carrossel {
+      background: gray;
+      border: 5px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 25vw;
+      height: 40vh;
+      font-size: 2vw;
+    }
+
+    .botao-carrossel {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f8e47a;
+      border: 1px solid black;
+      border-radius: 15px;
+      cursor: pointer;
+      padding: 2vh 2vw;
+      z-index: 2;
+    }
+
+    .botao-carrossel.anterior {
+      left: 10px;
+    }
+
+    .botao-carrossel.proximo {
+      right: 10px;
+    }
+
+
+
+    /* ======= SERVIÇOS (CARROSSEL) ======= */
+    .carrossel-servicos {
+      position: relative;
+      margin: 0 auto;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 0 50px 0;
+    }
+
+    .pista-servicos {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .item-servicos {
+      background: gray;
+      border: 5px solid white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-width: 25vw;
+      height: 55vh;
+      font-size: 2vw;
+    }
+
+    .botao-servicos {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f8e47a;
+      border: 1px solid black;
+      border-radius: 15px;
+      cursor: pointer;
+      padding: 2vh 2vw;
+      z-index: 2;
+    }
+
+    .botao-servicos.anterior {
+      left: 10px;
+    }
+
+    .botao-servicos.proximo {
+      right: 10px;
+    }
+
+    .titulo-secao-caixa {
+    width: 100%;
+    height: 35vh;
+    background-color: black;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    color: white;
+  }
+
+  .titulo-secao-caixa h2 {
+    font-size: 48px; 
+    margin: 0; 
+  }
+
+
+  /* ======= SEÇÃO PARCEIROS ======= */
+.parceiros {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.parceiros h2 {
+  height: 25vh;
+  font-weight: bold;
+}
+
+.parceiros .logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15vw;
+}
+
+.parceiros .logo {
+  width: 300px;
+  height: 250px;
+  background-color: gray; 
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+
+/* ======= RODAPÉ ======= */
+.rodape {
+  background: #0c1220;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 6vh 5vw;
+  flex-wrap: wrap; 
+}
+
+.rodape .coluna {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px 20px;
+}
+
+.rodape h3 {
+  font-size: 1.5vw;
+  margin-bottom: 15px;
+}
+
+.rodape ul {
+  list-style: none;
+  padding: 0;
+}
+
+.rodape ul li {
+  margin: 5px 0;
+}
+
+.rodape a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.rodape a:hover {
+  text-decoration: underline;
+}
+
+.rodape form{
+  margin-top: 3vh;
+}
+
+.rodape form input {
+  padding: 1vh;
+  margin: 5px 0;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+}
+
+.rodape form button {
+  padding: 1vh 2vw;
+  background: #f8e47a;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.rodape form button:hover {
+  background: #ffc107;
+}
+
+.mapa {
+  width: 35vw;
+  height: 30vh;
+  background: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ======= RESPONSIVIDADE ======= */
+
+/* Telas até 1024px (notebooks menores e tablets em horizontal) */
+@media (max-width: 1024px) {
+  header {
+    padding: 15px 25px;
+  }
+
+  .conteudo-banner {
+    width: 80%;
+    height: auto;
+    margin-left: 20px;
+  }
+
+  .sobre {
+    gap: 40px;
+  }
+
+  .valores {
+    height: auto;
+  }
+}
+
+/* Telas até 768px (tablets e celulares grandes) */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .banner {
+    height: auto;
+    padding: 40px 0;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .conteudo-banner {
+    margin: 0;
+    width: 90%;
+    height: auto;
+  }
+
+  .conteudo-banner h1 {
+    font-size: 22px;
+  }
+
+  .conteudo-banner p {
+    font-size: 14px;
+  }
+
+  .botao {
+    width: 100%;
+    font-size: 16px;
+    margin-top: 30px;
+    padding: 18px;
+  }
+
+  .sobre {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .sobre .imagem img {
+    height: auto;
+    max-height: 400px;
+  }
+
+  .valores-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .parceiros .logos {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .rodape {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .rodape .coluna {
+    margin: 20px 0;
+    min-width: 100%;
+  }
+
+  .mapa {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .visao-missao {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+
+/* Telas até 480px (celulares pequenos) */
+@media (max-width: 480px) {
+  .conteudo-banner {
+    padding: 20px;
+  }
+
+  .conteudo-banner h1 {
+    font-size: 18px;
+  }
+
+  .conteudo-banner p {
+    font-size: 13px;
+  }
+
+  .botao {
+    font-size: 14px;
+    padding: 15px;
+  }
+
+  .sobre h2 {
+    font-size: 14px;
+    width: auto;
+    padding: 8px;
+  }
+
+  .valores h2 {
+    font-size: 18px;
+  }
+
+  .valor {
+    font-size: 16px;
+  }
+
+  .titulo-secao-caixa h2 {
+    font-size: 28px;
+  }
+
+  .parceiros h2 {
+    font-size: 22px;
+  }
+
+  .parceiros .logo {
+    width: 200px;
+    height: 150px;
+    font-size: 10px;
+  }
+}
+
+  </style>
+
+</head>
+
+
+
+<body>
+
+  <!-- ======= CABEÇALHO ======= -->
+  <header>
+    <img src="imagem/logo-wr.avif" alt="Logo WR">
+    <nav>
+      <ul>
+        <li><a href="">Início</a></li>
+        <li><a href="">Sobre Nós</a></li>
+        <li><a href="">Portfólio</a></li>
+        <li><a href="">Serviços</a></li>
+        <li><a href="">Parcerias</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+
+  <!-- ======= BANNER ======= -->
+  <section class="banner">
+    <div class="conteudo-banner">
+      <h1>Faça seu sonho se tornar real</h1>
+      <p>Por 20 anos tornando ideias em realidade</p>
+      <a href="" class="botao">Solicite um Orçamento</a>
+    </div>
+  </section>
+
+
+  <!-- ======= PORTFÓLIO ======= -->
+  <section class="portfolio" id="portfolio">
+    <div class="carrossel">
+      <button class="botao-carrossel anterior">◀</button>
+      <div class="pista-carrossel">
+        <div class="item-carrossel">1</div>
+        <div class="item-carrossel">2</div>
+        <div class="item-carrossel">3</div>
+        <div class="item-carrossel">4</div>
+        <div class="item-carrossel">5</div>
+      </div>
+      <button class="botao-carrossel proximo">▶</button>
+    </div>
+  </section>
+
+
+  <!-- ======= SOBRE NÓS ======= -->
+  <section id="quem-somos" class="sobre">
+    <div class="texto">
+      <h2>Sobre a WR Construções</h2>
+      <p>
+        Somos uma equipe especializada em oferecer soluções completas e personalizadas na área da construção civil, 
+        com foco em qualidade, eficiência e atendimento humanizado. Atuamos desde o planejamento até a execução, 
+        garantindo excelência em cada etapa do processo.
+      </p>
+    </div>
+    <div class="imagem">
+      <img src="imagem/quem-somos.jpg" alt="Equipe da WR Construções">
+    </div>
+  </section>
+
+
+  <!-- ======= SEÇÃO VISÃO E MISSÃO ======= -->
+  <section class="visao-missao">
+    <div class="bloco">
+      <h3>Visão</h3>
+      <div class="logo">LOGO</div>
+      <p>Texto aqui e blablablablabla</p>
+    </div>
+
+    <div class="bloco">
+      <h3>Missão</h3>
+      <div class="logo">LOGO</div>
+      <p>Texto aqui e blablablablabla</p>
+    </div>
+  </section>
+
+
+  <!-- ======= VALORES ======= -->
+  <section class="valores">
+    <h2>Nossa empresa realiza seus projetos com<br>os seguintes valores:</h2>
+    <div class="valores-grid">
+      <div class="valor"><div class="quadrado"></div><span>QUALIDADE</span></div>
+      <div class="valor"><div class="quadrado"></div><span>CUSTO BENEFÍCIO</span></div>
+      <div class="valor"><div class="quadrado"></div><span>EFICIÊNCIA</span></div>
+      <div class="valor"><div class="quadrado"></div><span>SUSTENTABILIDADE</span></div>
+      <div class="valor"><div class="quadrado"></div><span>PLANEJAMENTO</span></div>
+      <div class="valor"><div class="quadrado"></div><span>COMUNICAÇÃO</span></div>
+    </div>
+  </section>
+
+  <!-- ======= SERVIÇOS ======= -->
+  <section class="servicos">
+    <div class="titulo-secao-caixa">
+      <h2>Nossos Serviços</h2>
+    </div>
+    <div class="carrossel-servicos">
+      <button class="botao-servicos anterior">◀</button>
+      <div class="pista-servicos">
+      <div class="item-servicos">Serviço 1</div>
+      <div class="item-servicos">Serviço 2</div>
+      <div class="item-servicos">Serviço 3</div>
+      <div class="item-servicos">Serviço 4</div>
+      </div>
+      <button class="botao-servicos proximo">▶</button>
+    </div>
+  </section>
+
+
+  <!-- ======= PARCEIROS ======= -->
+    <section class="parceiros">
+      <h2>Nossos Parceiros</h2>
+      <div class="logos">
+        <div class="logo">Logo 1</div>
+        <div class="logo">Logo 2</div>
+      </div>
+    </section>
+
+
+    <!-- ======= RODAPÉ ======= -->
+<footer class="rodape">
+  <div class="coluna">
+    <h3>Redes Sociais:</h3>
+    <ul>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">Facebook</a></li>
+    </ul>
+  </div>
+
+  <div class="coluna">
+    <h3>Contato:</h3>
+    <p>Email: seilafodase@empresa.com</p>
+    <p>Telefone: (31) 99999-9999</p>
+  </div>
+
+  <div class="coluna">
+    <p href="#"><a href="#">Termos de Serviço</a></p>
+
+    <form>
+      <label for="email">Digite seu email:</label><br>
+      <input type="email" id="email" name="email" placeholder="Seu email">
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+
+  <div class="coluna mapa">
+    
+    <div class="mapa">Mapa</div>
+  </div>
+</footer>
+
+
+
+
+  <!-- ======= SCRIPT DO CARROSSEL ======= -->
+  <script>
+    // Seleciona os elementos principais do carrossel
+    const pista = document.querySelector('.pista-carrossel');
+    const itens = Array.from(pista.children);
+    const botaoAnterior = document.querySelector('.botao-carrossel.anterior');
+    const botaoProximo = document.querySelector('.botao-carrossel.proximo');
+    const container = document.querySelector('.carrossel');
+
+    // Calcula dimensões
+    const larguraItem = itens[0].getBoundingClientRect().width + 20; // largura + gap
+    const larguraContainer = container.getBoundingClientRect().width;
+    const maxScroll = (larguraItem * itens.length) - larguraContainer;
+
+    let posicaoAtual = 0;
+
+    // Botão próximo
+    botaoProximo.addEventListener('click', () => {
+      if (posicaoAtual < maxScroll) {
+        posicaoAtual += larguraItem;
+        if (posicaoAtual > maxScroll) posicaoAtual = maxScroll; // trava no fim
+        pista.style.transform = `translateX(-${posicaoAtual}px)`;
+      }
+    });
+
+    // Botão anterior
+    botaoAnterior.addEventListener('click', () => {
+      if (posicaoAtual > 0) {
+        posicaoAtual -= larguraItem;
+        if (posicaoAtual < 0) posicaoAtual = 0; // trava no início
+        pista.style.transform = `translateX(-${posicaoAtual}px)`;
+      }
+    });
+
+    // ======= CARROSSEL SERVIÇOS ======= 
+const pistaServicos = document.querySelector('.pista-servicos');
+const itensServicos = Array.from(pistaServicos.children);
+const botaoAnteriorServicos = document.querySelector('.botao-servicos.anterior');
+const botaoProximoServicos = document.querySelector('.botao-servicos.proximo');
+const containerServicos = document.querySelector('.carrossel-servicos');
+
+// Calcula dimensões
+const larguraItemServicos = itensServicos[0].getBoundingClientRect().width + 20;
+const larguraContainerServicos = containerServicos.getBoundingClientRect().width;
+const maxScrollServicos = (larguraItemServicos * itensServicos.length) - larguraContainerServicos;
+
+let posicaoAtualServicos = 0;
+
+// Botão próximo
+botaoProximoServicos.addEventListener('click', () => {
+  if (posicaoAtualServicos < maxScrollServicos) {
+    posicaoAtualServicos += larguraItemServicos;
+    if (posicaoAtualServicos > maxScrollServicos) posicaoAtualServicos = maxScrollServicos;
+    pistaServicos.style.transform = `translateX(-${posicaoAtualServicos}px)`;
+  }
+});
+
+// Botão anterior
+botaoAnteriorServicos.addEventListener('click', () => {
+  if (posicaoAtualServicos > 0) {
+    posicaoAtualServicos -= larguraItemServicos;
+    if (posicaoAtualServicos < 0) posicaoAtualServicos = 0;
+    pistaServicos.style.transform = `translateX(-${posicaoAtualServicos}px)`;
+  }
+});
+  </script>
+</body>
+</html>
